@@ -147,7 +147,7 @@ export default function Upload({setOpen}) {
   const handleUploadToDb = async(e) =>{
     console.log("hanle upload td db",input);
 
-    const res = await axios.post("/video",{...input});
+    const res = await axios.post(`${url}/video`,{...input});
     console.log("uploaded",res);
     setOpen(false);
   }

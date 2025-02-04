@@ -79,10 +79,11 @@ export default function Comments({videoId}) {
   const [commentDetails,setCommentDetails] = useState({})
 
   console.log("popUp",popUp)
+  const url = 'https://web-project-oj4z.onrender.com/api'
 
   useEffect(()=>{
     const fetchComment = async() =>{
-       const comment = await axios.get(`/comments/${videoId}`);
+       const comment = await axios.get(`${url}/comments/${videoId}`);
        console.log("here are ur comments", JSON.stringify(comment.data))
        const commentsUn = comment.data
        const orderedComments = [
@@ -98,7 +99,7 @@ export default function Comments({videoId}) {
   },[videoId]);
 
   const updatedComments = async()=>{
-    const comment = await axios.get(`/comments/${videoId}`);
+    const comment = await axios.get(`${url}/comments/${videoId}`);
     console.log("here are ur comments", JSON.stringify(comment.data))
     const commentsUn = comment.data
     const orderedComments = [
@@ -118,15 +119,15 @@ export default function Comments({videoId}) {
     console.log("ur final comment"+finalComment)
 
     if(popUp === true){
-        const comment = await axios.post(`/comments/${commentDetails?._id}`,{desc:finalComment,videoId:videoId})
+        const comment = await axios.post(`${url}/comments/${commentDetails?._id}`,{desc:finalComment,videoId:videoId})
     }else{
-        const comment = await axios.post(`/comments/`,{desc:finalComment,videoId:videoId})
+        const comment = await axios.post(`${url}/comments/`,{desc:finalComment,videoId:videoId})
     }
     console.log(comment.data);
 
     setPopUp(popUp === true && setPopUp(false));
 
-    const updatecomment = await axios.get(`/comments/${videoId}`);
+    const updatecomment = await axios.get(`${url}/comments/${videoId}`);
     console.log("here are ur comments", JSON.stringify(comment.data))
     const commentsUn = updatecomment.data
     const orderedComments = [

@@ -112,7 +112,7 @@ export default function Video() {
 
   const {user} = useSelector((state)=>state.user);
   const videos = useSelector((state)=>state.video?.videoUser)
- 
+  const url = 'https://web-project-oj4z.onrender.com/api'
   console.log("videoUser"+JSON.stringify(videos))
 
   const dispatch = useDispatch();
@@ -124,11 +124,11 @@ export default function Video() {
     const fetchData = async()=>{
        fetchStart();
        try{
-         const videoRes = await axios.get(`/video/find/${path}`);
+         const videoRes = await axios.get(`${url}/video/find/${path}`);
          console.log("videoRes"+JSON.stringify(videoRes.data));
          /* setVideos(videoRes.data); as this is now taken care by redux */
          dispatch(fetchSuccess(videoRes.data))
-         const channelRes = await axios.get(`/user/${videoRes?.data.userId}`)
+         const channelRes = await axios.get(`${url}/user/${videoRes?.data.userId}`)
          console.log("channelRes"+JSON.stringify(channelRes.data))
          setChannel(channelRes.data)
 
@@ -145,27 +145,27 @@ export default function Video() {
 
 
   const handleLike = async () =>{
-     await axios.put(`/user/${videos?._id}/like`)
+     await axios.put(`${url}/user/${videos?._id}/like`)
      console.log("userId like "+user?._id)
      dispatch(likes(user?._id));
   }
 
   const handleDisLike = async () =>{
-     await axios.put(`/user/${videos?._id}/dislike`)
+     await axios.put(`${url}/user/${videos?._id}/dislike`)
      console.log("userId dislike"+user?._id)
      dispatch(dislikes(user?._id));
   }
 
   const handleSubscription = async() => {
     if(!user?.subscribedUsers?.includes(videos?.userId)){
-      await axios.post(`/user/${videos?.userId}/sub`)
+      await axios.post(`${url}/user/${videos?.userId}/sub`)
     }else{
-      await axios.post(`/user/${videos?.userId}/unsub`)
+      await axios.post(`${url}/user/${videos?.userId}/unsub`)
     }
     dispatch(subscriptions(videos?.userId))
     try{
-      const videoRes = await axios.get(`/video/find/${path}`);
-      const channelRes = await axios.get(`/user/${videoRes?.data.userId}`)
+      const videoRes = await axios.get(`${url}/video/find/${path}`);
+      const channelRes = await axios.get(`${url}/user/${videoRes?.data.userId}`)
       console.log("channelRes"+JSON.stringify(channelRes.data))
       setChannel(channelRes.data)
     }catch(err){

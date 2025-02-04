@@ -59,11 +59,12 @@ const Info = styled.div`
 export default function Card({type,cardData}) {
 
 const [channel,setChannel] = useState({});
+const url = 'https://web-project-oj4z.onrender.com/api'
 
 
   useEffect(()=>{
     const fetchChannel = async() => {
-        const res = await axios.get(`/user/${cardData.userId}`)
+        const res = await axios.get(`${url}/user/${cardData.userId}`)
         console.log("channel"+res.data.name)
         setChannel(res.data);
 

@@ -61,11 +61,11 @@ export default function Comment({comment,updatecomment,setPopUp,setUpdateMessage
   const [isHover,setIsHover] = useState(false);
   const [channel,setChannel] = useState({});
   const user = useSelector(state=>state.user.user);
-
+const url = 'https://web-project-oj4z.onrender.com/api'
 
   useEffect(()=>{
     const fetchChannel = async()=>{
-        const channel = await axios.get(`/user/${comment.userId}`)
+        const channel = await axios.get(`${url}/user/${comment.userId}`)
         console.log("channel detaik in commentr "+JSON.stringify(channel.data));
         setChannel(channel.data);
     }
@@ -74,7 +74,7 @@ export default function Comment({comment,updatecomment,setPopUp,setUpdateMessage
   },[comment?.userId])
 
   const handleDelete = async() =>{
-     const deleteComment = await axios.delete(`/comments/${comment._id}`);
+     const deleteComment = await axios.delete(`${url}/comments/${comment._id}`);
      console.log("u deleted ",deleteComment);
      updatecomment();
   }

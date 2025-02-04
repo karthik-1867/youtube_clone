@@ -66,13 +66,15 @@ export default function SignIn() {
  const dispatch = useDispatch()
  const navigate = useNavigate()
 
+   const url = 'https://web-project-oj4z.onrender.com/api'
+
  const handleLogin =async(e)=>{
    e.preventDefault()
    console.log("clicked")
   dispatch(loginStart())
    try{
      
-     const ress = await axios.post("/auth/signin",{name,"password":pass})
+     const ress = await axios.post(`${url}/auth/signin`,{name,"password":pass})
      console.log(ress.data);
      dispatch(loginSuccess(ress.data));
      navigate("/");
@@ -87,7 +89,7 @@ export default function SignIn() {
    signInWithPopup(auth,provider).then((result)=>{
    dispatch(loginStart());
    console.log(JSON.stringify(result.user))
-    axios.post("/auth/googleAuth",{
+    axios.post(`${url}/auth/googleAuth`,{
       name:result.user.displayName,
       email:result.user.email,
       img:result.user.photoURL

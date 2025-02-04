@@ -17,10 +17,12 @@ export default function Home() {
   const user = useSelector(state=>state.user.user);
   console.log("user"+user?.name)
 
+  const url = 'https://web-project-oj4z.onrender.com/api'
+
   useEffect(()=>{
     console.log("use effect called")
     const fetchVideos = async()=> {
-      const res = await axios.get("/video/random");
+      const res = await axios.get(`${url}/video/random`);
       console.log(res.data)
       setVideos(res.data)
       console.log("axioz called")

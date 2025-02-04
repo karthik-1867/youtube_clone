@@ -75,7 +75,7 @@ export default function Upload({setOpen}) {
 //   const [title,setTitle] = useState("");
 //   const [desc,setDesc] = useState("");
    const [tags,setTags] = useState([]);
-
+const url = 'https://web-project-oj4z.onrender.com/api'
     //  better way of storing input as object instead of single values leadinf to multiple useSTate
      const [input,setInput] = useState({});
 

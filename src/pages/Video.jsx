@@ -111,7 +111,11 @@ export default function Video() {
   const [channel,setChannel] = useState({});
 
   const {user} = useSelector((state)=>state.user);
-  const videos = useSelector((state)=>state.video?.videoUser)
+  const videos = useSelector((state)=>state.video?.videoUser);
+
+  const updatedVideos = videos
+  ? { ...videos, videoUrl: videos.videoUrl.replace(/^http:/, 'https:') }
+  : null;
   const url = 'https://web-project-oj4z.onrender.com/api'
   console.log("videoUser"+JSON.stringify(videos))
 
@@ -180,7 +184,7 @@ export default function Video() {
          <iframe
             width="100%"
             height="720"
-            src={videos?.videoUrl}
+            src={updatedVideos?.videoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

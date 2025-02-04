@@ -192,11 +192,11 @@ export default function Video() {
          <Details>
             <Buttons>
                 <Button onClick={handleLike}>
-                   {videos.likes?.includes(user?._id) ?<ThumbUp/>:<ThumbUpOutlined/>}
-                   {videos.likes?.length}
+                   {videos?.likes?.includes(user?._id) ?<ThumbUp/>:<ThumbUpOutlined/>}
+                   {videos?.likes?.length}
                 </Button>
                 <Button onClick={handleDisLike}>
-                {videos.dislikes?.includes(user?._id) ?<ThumbDown/>:<ThumbDownOutlined/>}
+                {videos?.dislikes?.includes(user?._id) ?<ThumbDown/>:<ThumbDownOutlined/>}
                   Dislike
                 </Button>
                 <Button>
@@ -217,14 +217,14 @@ export default function Video() {
                <ChannelName>{channel?.name}</ChannelName>
                <ChannelCounter>{channel?.subscribers} subscriber</ChannelCounter>
                <Description>
-                 {videos.desc} 
+                 {videos?.desc} 
                 </Description>
              </ChannelDetails>
            </ChannelInfo>
-           <Subscribe onClick={handleSubscription}>{user?.subscribedUsers?.includes(videos.userId) ? "SUBSCRIBED" : "SUBSCRIBE"}</Subscribe>
+           <Subscribe onClick={handleSubscription}>{user?.subscribedUsers?.includes(videos?.userId) ? "SUBSCRIBED" : "SUBSCRIBE"}</Subscribe>
          </Channel>
          <Hr/>
-         <Comments videoId={videos._id}/>
+         <Comments videoId={videos?._id}/>
        </Content>
        <Recommendation>
         

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { loginFailure, loginStart, loginSuccess } from '../redux/userSlice'
-import {auth,provider} from './../firebase'
+import {auth,provider} from '../firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
